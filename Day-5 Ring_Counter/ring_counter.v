@@ -1,26 +1,13 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03.05.2024 18:13:06
-// Design Name: 
-// Module Name: ring_counter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-module ring_counter(
-
-    );
+module ring_counter(input clk,rst,output reg [3:0] out);
+always @(posedge clk) begin
+    if (rst)
+        out=4'b1000;
+    else begin
+        if(out==4'b0001)
+            out=4'b1000;
+        else
+            out=out>>1;
+    end 
+end
 endmodule
